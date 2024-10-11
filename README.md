@@ -1,3 +1,4 @@
-# capstone
-repository name is temporary for now
+![](docs/imgs/logo.png)
 
+
+### [Proposal](docs/proposal/proposal.pdf)
