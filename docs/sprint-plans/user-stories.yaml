@@ -1,0 +1,415 @@
+stories:
+- section:  "Configuration"
+  name: "Configuration File"
+  story: "As a system integrator, I would like to tune the agent's hyperparameters so that the model can be adjusted to learn properly (Without GUI options)."
+  points: "1"
+  sprint: 1
+  due-date: 1.6
+  reason: "This story only requires creating an interface for adjusting hyperparameters through a configuration file."
+  tasks: 
+    - name: "Write a configuration parser for training hyperparameters as well as a specification for config files"
+      shortname: "Write parser"
+      workload: "2 hours"
+      status: "in progress"
+      assigned: "TBD"
+
+- name: "GUI Runtime and Configuration"
+  story: "As a system integrator, I want to be able to conveniently edit and adjust the hyperparameters and start training from a GUI, so that it is easy to train new employees and maintainers."
+  points: "2"
+  sprint: 1
+  due-date: 2.5
+  reason: "The GUI is UI-focused with limited backend complexity. It provides essential features for ease of use but requires minimal integration of new technology."
+  tasks: 
+    - name: "Develop a simple, user-friendly tool for adjusting key parameters (ex: speed, reaction time, etc.). "
+      shortname: "Build GUI"
+      workload: "2 hours"
+      assigned: "TBD"
+    - name: "Use the configurator generate a usable config file"
+      shortname: "Config Generator"
+      workload: "30 mins"
+      assigned: "TBD"
+      status: "in progress"
+
+- name: "Cost Function, Optimizer, and RL Algorithm Selection"
+  story: "As a system integrator, I want the option to select and vary preferences algorithm variations so that I can efficiently refine the agent's training. "
+  points: "3"
+  sprint: 2
+  due-date: 4.15
+  reason: "Adjusting RL reward functions is minimally complex but will likely have to be modified for each simulation task (Weather changes, Traffic, emergency situations) to find the optimal algorithm for each."
+  tasks: 
+    - name: "Create a dropdown or selection tool to choose between RL algorithms."
+      shortname: "Create RL algorithm dropdown"
+      workload: "2 hours"
+      assigned: "TBD"
+    - name: "Allow customization of optimizer parameters such as the learning rate and momentum."
+      shortname: "Customization of optimizer parameters"
+      workload: "1 hour"
+      assigned: "TBD"
+      
+- name: "Checkpointing and Transfer Learning"
+  story: "As a system integrator, I want to save agent's progress to incrementally improve its performance by retaining insights from past simulations, for steady performance and growth."
+  points: "8"
+  sprint: 2
+  due-date: 3.9
+  reason: "Checkpointing for future use will be fairly time consuming as it requires creating and optimizing functions for saving the agent's progress at specified intervals as well as functions for using insights from past simulations."
+  tasks: 
+    - name: "Implement a function to save the agent's progress at specified intervals."
+      shortname: "Function to save progress"
+      workload: "4 hours"
+      assigned: "TBD"
+    - name: "Implement a function to use insights from past simulations to improve the agent's performance and growth."
+      shortname: "Function to use past insights"
+      workload: "2 hours"
+      assigned: "TBD"
+
+- section: "CARLA Interaction"
+  name: "Basic Movement"
+  story: "As a system integrator, I want the agent to be able to move and interact with the CARLA simulator so that it can learn from it and be evaluated."
+  points: "8"
+  reason: "This story was given 8 points due to its critical importance as the foundation of our entire project. The strength and accuracy of our base environment are key to successfully implementing future user stories that will build upon it, so it will require additional testing and refinement."
+  sprint: 1
+  due-date: 1.2
+  tasks: 
+    - name: "Set up the CARLA environment in a way that is accessible to the development team."
+      shortname: "Environment setup"
+      status: "in progress"
+      workload: "5 hours"
+      assigned: "TBD"
+    - name: "Integrate CARLA's API to enable basic movement commands (ex: start, stop, turn)."
+      shortname: "Movement pipeline"
+      workload: "3 hours"
+      assigned: "TBD"
+    - name: "Run test cases to confirm the agent can move forward, stop, and turn, documenting any issues for later refinement."
+      shortname: "Movement testing"
+      workload: "3 hours"
+      assigned: "TBD"
+ 
+- name: "Sensor Integration for Environment Feedback"
+  story: "As a system integrator, I want the agent to be able to receive sensor information (e.g., cameras, LiDAR, radar) so that the agent can receive feedback on its actions."
+  points: "3"
+  sprint: 1
+  due-date: 1.4
+  reason: "This user story will take a moderate amount of time, as CARLA allows simple and easy generation and handling of sensor data; however, functions for forwarding information to the agent will need to be implemented."
+  tasks: 
+    - name: "Initialize camera and LiDAR sensors in CARLA and integrate them into the agent."
+      shortname: "Initialize camera and LiDAR sensors"
+      workload: "4 hours"
+      assigned: "TBD"
+      
+- name: "Sensor Data Preprocessing"
+  story: "As a system integrator, I want the agent to be able to properly perceive and utilise sensor information so that the agent can make the correct decisions."
+  points: "4"
+  sprint: 1
+  due-date: 1.5
+  reason: "Data preprocessing can be challenging and must match the format the model was pretrained on."
+  tasks:
+    - name: "Develop data parsers to preprocess sensor data and convert raw data into a format that the agent may use."
+      shortname: "Develop data parsers"
+      workload: "3 hours"
+      assigned: "TBD"
+
+- section: "Logging and Monitoring"
+
+  name: "Simulation Metrics Monitoring"
+  story: "As a system integrator, I want to track and evaluate the agent’s performance in specific tasks so that the agents abilities in different areas can be identified for optimization."
+  points: "3"
+  sprint: 2
+  due-date: 3.25
+  reason: "Straightforward setup for logging performance metrics with CARLA's output, but is essential for tracking progressive improvements."
+  tasks: 
+    - name: "Set up a logging system to record key performance metrics (ex: reaction time, obstacle avoidance success)"
+      shortname: "Set up logging system"
+      workload: "2 hours"
+      assigned: "TBD"
+
+- name: "Training Metrics Monitoring"
+  story: "As a system integrator, I want detailed logging of the agent’s training metrics, so I can identify issues in training. (Differs from simulation metrics as the data source, processing, and destination are entirely different)"
+  points: "3"
+  sprint: 1
+  due-date: 1.6
+  reason: "Detailed logging is fairly straightforward but critical for monitoring training."
+  tasks:
+    - name: "Develop a logging module to initialize and organize logging categories (ex: errors, warning, metrics) and save logs in a structured format (ex: JSON, CVS) to make analyzing more simple."
+      shortname: "Develop logging module"
+      workload: "2 hours"
+      assigned: "TBD"
+    - name: "Track and log important metrics such as loss, reward progression, training completion, and agent performance metrics in real-time."
+      shortname: "Track / log metrics"
+      workload: "6 hours"
+      assigned: "TBD"
+  
+- name: "Integration with External Monitoring Tools"
+  story: "As a system integrator, I want the ability to integrate CARLA’s simulation output with external monitoring tools (Weights and Biases) for advanced analysis and visualization of performance metrics and trends"
+  points: "5"
+  sprint: 1
+  reason: "Moderate complexity to set up data streaming with external tools like WandB, essential for visualizing trends and analysis during testing."
+  tasks: 
+    - name: "Implement the function to stream CARLA's output data to WandB.ai in real-time, allowing metrics to be visualized at the simulation runs."
+      shortname: "Write data streaming code"
+      status: "in progress"
+      workload: "1 hour"
+      assigned: "TBD"
+      
+- name: "Detailed Error Reporting"
+  story: "As a system integrator, I want detailed error reporting that includes error type, context, and relevant metrics so I can quickly diagnose and resolve issues affecting system performance and stability."
+  points: "5"
+  sprint: 2
+  due-date: 3.7
+  reason: "Effective error logging is essential for iterative development and testing; moderately complex, as it demands comprehensive logging with contextual data."
+  tasks: 
+    - name: "Identify and categorize common error types (ex: sensor failure) and specify the context data to capture with each error type."
+      shortname: "Categorize common error types"
+      workload: "1 hour"
+      assigned: "TBD"
+    - name: "Develop a centralized logging system that captures error type, time, and context data to then output to a log file."
+      shortname: "Develop logging system"
+      workload: "2 hours"
+      assigned: "TBD"
+ 
+- section: "Basic Driving Manoeuvres" 
+
+  name: "Regular Stopping"
+  story: "As a system integrator, I want the agent to be able to stop when needed at the right position, like when a stop sign is detected (does not include detection of stopping conditions) so that it can follow traffic rules correctly."
+  points: "5"
+  sprint: 2
+  due-date: 4.4
+  reason: "Stopping will depend on speed control, perception and predefined legal constraints; moderately complex with some integration of dynamic traffic flow considerations."
+  tasks: 
+    - name: "Implement logic for detecting appropriate stopping points such as stop lines."
+      shortname: "Implement stop detection"
+      workload: "3 hours"
+      assigned: "TBD"
+    - name: "Implement stop confirmation which will ensure the agent halts at the correct position and verifies stop completion."
+      shortname: "Implement stop confirmation"
+      workload: "3 hours"
+      assigned: "TBD"
+      
+- name: "Turning"
+  story: "As a system integrator, I want the agent to be able to turn at intersections when needed so that it can follow traffic rules correctly."
+  points: "5"
+  sprint: 2
+  due-date: 3.9
+  reason: "Turning relies on speed control as well as perception and predefined legal constraints; moderately complex with some integration of dynamic traffic flow considerations."
+  tasks: 
+    - name: "Implement turn detection for when a turn is needed based on map data or visual cues."
+      shortname: "Implement turn detection"
+      workload: "3 hours"
+      assigned: "TBD"
+    - name: "Program the agent to initiate and complete turns within lane boundaries."
+      shortname: "Program turning action"
+      workload: "3.5 hours"
+      assigned: "TBD"
+      
+- name: "Adaptive Speed Management"
+  story: "As a system integrator, I want the agent to adjust its speed based on road conditions, traffic flow, and legal speed limits, so that it drives safely and efficiently in various environments."
+  points: "5"
+  sprint: 2
+  due-date: 4.6
+  reason: "Speed control relies on perception and predefined legal constraints; moderately complex with some integration of dynamic traffic flow considerations."
+  tasks: 
+    - name: "Implement an algorithm that adjusts speed based on road conditions, traffic flow, legal speed limits, etc."
+      shortname: "Implement speed adjustment algorithm"
+      workload: "5 hours"
+      assigned: "TBD"
+    - name: "Add logic to respond dynamically to traffic flow, such as slowing down in sudden heavy traffic."
+      shortname: "Dynamic traffic response logic"
+      workload: "3 hours"
+      assigned: "TBD"
+      
+- name: "Stationary Obstacle Avoidance"
+  story: "As a system integrator, I want the agent to detect and avoid obstacles (ex: traffic cones, parked cars, etc.) so that safety can be ensured in real-world challenges."
+  points: "8"
+  sprint: 2
+  due-date: 4.1
+  reason: "This basic maneuver is given 8 story points due to safety requirements and the challenging sensor fusion and real-time decision-making needed to handle diverse road elements."
+  tasks: 
+    - name: "Use sensor inputs to detect stationary obstacles in the path."
+      shortname: "Detect obstacles with sensor inputs"
+      workload: "1 hour"
+      assigned: "TBD"
+    - name: "Implement pathfinding logic to navigate around obstacles"
+      shorthand: "Implement pathfinding logic"
+      workload: "2 hours"
+      assigned: "TBD"
+    - name: "Set up alerts or actions if the agent comes too close to a detected stationary obstacle."
+      shortname: "Alerts for obstacles in close vicinity"
+      workload: "1 hour"
+      assigned: "TBD"
+      
+- section: "Complex Manoeuvres"
+
+  name: "Lane Following"
+  story: "As a system integrator, I want the agent to be able to follow the curve of the road in so that it won't drive off the road or drift into other lanes."
+  points: "5"
+  sprint: 2
+  due-date: 4.4
+  reason: "While lane following is a well covered topic in previous methods, it can still be difficult to implement and requires some research and understanding."
+  tasks:
+    - name: "Develop a lane detection algorithm that tracks lane markngs and road edges to allow the agent to remain within the boundaries of the road."
+      shortname: "Lane detection algorithm"
+      workload: "3 hours"
+      assigned: "TBD"
+    - name: "Code agents control parameters to handle road curves smoothly in order to prevent lane drift "
+      shortname: "Lane detection algorithm"
+      workload: "5 hours"
+      assigned: "TBD"
+  
+      
+- name: "Lane Changing"
+  story: "As a system integrator, I want the agent to perform safe lane changes in order to avoid collisions so that I can assess its awareness and responsiveness on the road"
+  points: "5"
+  sprint: 2
+  due-date: 4.5
+  reason: "Moderately complex due to necessary responsiveness, real-time adjustments, and safety requirements but manageable with existing perception and control components."
+  tasks: 
+    - name: "Use sensor data / camera inputs to detect available lanes and check for nearby vehicles / obstacles in ajacent lanes."
+      shortname: "Use sensors to detect nearby lanes"
+      workload: "1 hour"
+      assigned: "TBD"
+    - name: "Develop control algorithm to smoothly and safely maneuver the agent from the current lane to the target lane, while maintaining the proper speed and orientation."
+      shortname: "Develop control algorithm"
+      workload: "5 hours"
+      assigned: "TBD"
+  
+
+- name: "Moving Obstacle Response"
+  story: "As a system integrator, I want the agent to respond efficiently to abrupt interruptions on the road (ex: unexpected pedestrian, large animals, etc.) so that its reliability in critical situations can be ensured."
+  points: "8"
+  sprint: 2
+  due-date: 4.2
+  reason: "Requires complex algorithms for handling sudden, varied events (e.g., sudden stops), needing in-depth testing and adaptability."
+  tasks: 
+    - name: "Allow agent to predict movement patterns of obstacles (ex: pedestrian crossing prediction)"
+      shortname: "Movement pattern prediction"
+      workload: "3 hours"
+      assigned: "TBD"
+    - name: "Implement a functionality to adjust paths dynamically based on a moving obstacle's trajectory."
+      shortname: "Function to adjust paths dynamically"
+      workload: "4 hours"
+      assigned: "TBD"
+      
+- name: "Pedestrian Interaction"
+  story: "As a system integrator, I want the agent to react appropriately to pedestrians, including yielding and adjusting speed, so I can validate its safety around human interactions."
+  points: "8"
+  sprint: 2
+  due-date: 4.5
+  reason: "Interaction with pedestrians adds complexity due to unpredictable behavior. Extra testing and edge-case consideration necessary for thorough safety validation in human-centric scenarios."
+  tasks: 
+    - name: "Implement pedestrian detection using sensors / camera data and track movement to predict potential paths."
+      shortname: "Implement pedestrian detection"
+      workload: "2 hours" 
+      assigned: "TBD"
+    - name: "Develop logic for the agent to slow down or stop when pedestrians are detected within a certain range, including yielding as necessary."
+      shortname: "Logic to slow down when pedestrian nearby"
+      workload: "3 hours" 
+      assigned: "TBD"
+
+- name: "Traffic Following"
+  story: "As a system integrator, I want the agent to be able to work in different traffic conditions (ex: speed of traffic, number of cars, number of pedestrians, etc) to ensure the performance of the reinforcement learning model does not change due to traffic."
+  points: "8"
+  sprint: 2
+  due-date: 3.8
+  reason: "Adapting to varied traffic aligns with CARLA’s capabilities but requires complex perception and real-time response adjustments to maintain safety."
+  tasks: 
+    - name: "Develop a module to assess traffic density and flow, adapting the agent's behaviour based on the number of nearby vehicles / pedestrians."
+      shortname: "Develop traffic assessment module"
+      workload: "4 hours"
+      assigned: "TBD"
+    - name: "Enable agent to adjust its speed base on speed of nearby vehicles to ensure safe navigation."
+      shortname: "Enable natural speed adjustment"
+      workload: "3 hours"
+      assigned: "TBD"
+      
+- name: "Road Sign Recognition"
+  story: "As a system integrator, I want the agent to recognize and respond to road signs (e.g., speed limits, stop signs) to ensure it can obey traffic laws."
+  points: "8"
+  sprint: 2
+  due-date: 3.7
+  reason: "Recognizing road signs involves image recognition and classification, requiring extensive model training and testing."
+  tasks: 
+    - name: "Integrate an image recognition model specifically for detecting road signs."
+      workload: "5 hours"
+      assigned: "TBD"
+    - name: "Add logic to interpret signs and adjust agents behaviour based on the sign (ex: stopping for stop sign, adjust speed for speed limits)."
+      workload: "5 hours"
+      assigned: "TBD"
+  
+- section: "Environment Diversity"
+  name: "Location Agnostic Driving"
+  story: "As a system integrator, I want the agent to adapt its driving behavior to different location settings (e.g., rural roads, city streets, highways) so I can confirm its versatility and reliability across diverse driving environments."
+  points: "8"
+  sprint: 2
+  due-date: 5.1
+  reason: "This user story will be moderatley complex as it will require implementing logic to detect the current driving environment as well as creating behaviour models for each driving evironment."
+  tasks: 
+    - name: "Create behaviour modules tailored for specific locations that adjust the agent's driving style based on road type and expected traffic."
+      shortname: "Create behaviour modules"
+      workload: "4 hours"
+      assigned: "TBD"
+    - name: "Implement the logic to detect the current driving environment and switch to the corresponding behaviour module."
+      shortname: "Logic to detect driving environment"
+      workload: "4 hours"
+      assigned: "TBD"
+  
+- name: "Environmental Conditions"
+  story: "As a system integrator, I want the agent to adjust its driving behavior according to different times of the day (e.g., broad day, dusk, night), and weather to ensure it performs reliably under varying environmental conditions."
+  points: "8"
+  sprint: 2
+  due-date: 5.2
+  reason: "Adapting to weather adds substantial testing requirements, given the project’s progressive complexity and real-time adjustment needs."
+  tasks: 
+    - name: "Add mechanisms to adjust the agent's perception and behaviour based on the time of day (ex: use headlines at dusk)."
+      shortname: "Adjust behaviour based on time-of-day"
+      workload: "4 hours"
+      assigned: "TBD"
+    - name: "Integrate adjustments for different weather conditions (ex: lower speeds in rain, snow, fog, etc)."
+      shortname: "Weather condition adaptation"
+      workload: "5 hours"
+      assigned: "TBD"
+      
+- section: "Non-Functional Requirements"
+  name: "Modularity and Code Cleanliness"
+  story: "As a future contributor, I want components of the agent and model to be modular and well documented, so I can easily update or modify the STELLA tookit."
+  points: "3"
+  sprint: 1
+  due-date: 1.9
+  reason: "Maintaining clean code and component documentation will take slightly more time throughout development but will ease other other areas of development."
+  tasks: 
+    - name: "Establish a high-level structure that separates the agent's core modules (ex: perception, control, reward function, environment interaction)."
+      shortname: "Design modular structure"
+      workload: "1 hour"
+      status: "in progress"
+      assigned: "TBD"
+  
+- name: "Robustness"
+  story: "As a system integrator, I want the agents behavior to be robust against edge cases and adversarial situations."
+  points: "8"
+  sprint: 1
+  due-date: 2.1
+  reason: "Robustness requires careful hand selection of edge-case scenarios for testing, and large datasets for training."
+  tasks: 
+    - name: "Test for robustness and refine dataset."
+      shortname: "Improve dataset"
+      workload: "4 hours"
+      assigned: "TBD"
+
+- name: "Efficiency"
+  story: "As a system integrator, I want the toolkit to run efficiently so that it makes the best use of my resources."
+  points: "8"
+  sprint: 1
+  due-date: 2.1
+  reason: "Constant, difficult effort that will require understanding of the underlying mechnisms like CUDA, Operating Systems, and Neural Networks."
+  sprint: 
+  tasks:
+    - name: "Analyze / optimize resource usage in perception and control components to reduce processing load and improve speed."
+      shortname: "Optimize resource usage"
+      workload: "5 hours"
+      assigned: "TBD"
+    - name: "Set up profiling to monitor the agents performance in order to identify bottlenecks or high-latency operations."
+      workload: "2 hours"
+      shortname: "Agent performance profiling"
+      assigned: "TBD"
+    - name: "Modify code to support hardware acceleration where applicable for faster processing / response times."
+      shortname: "Optimize code"
+      workload: "5 hours"
+      assigned: "TBD"
