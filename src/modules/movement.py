@@ -67,6 +67,27 @@ class CARLAInterface:
         else:
             print("No vehicle spawned.")
 
+    def add_camera(self, attach_point=None, save_path = 'output/'):
+        # checking if vehicle is spawned
+        if not self.vehicle:
+            print("Error: No vehicle to attach the camera to.")
+            return None
+        
+        # creating camera
+        blueprint_library = self.world.get_blueprint_library()
+        camera_bp = blueprint_library.find('sensor.camera.rgb')
+
+        # could set camera attributes necessary here
+
+        # attaching camera to vehicle
+        spawn_point = attach_point or carla.Transform(carla.Location(x=1.5, z=2.4))
+        camera = self.world.spawn_actor(camera_bp, spawn_point, attach_to=self.vehicle)
+
+        # start listening to camera
+        camera.listen(lambda image: image.save_to_disk(f'{save_path}/%06d.png' % image.frame))
+        print("Camera attached and saving images to: ", save_path)
+        return camera
+
     def destroy_vehicle(self):
         if self.vehicle:
             self.vehicle.destroy()
