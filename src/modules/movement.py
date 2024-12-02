@@ -1,5 +1,6 @@
 import carla
 import time
+from sensors import Sensors
 
 class CARLAInterface:
     def __init__(self, host='localhost', port=2000):
@@ -16,6 +17,12 @@ class CARLAInterface:
         self.vehicle = self.world.try_spawn_actor(vehicle_bp, spawn_points[spawn_point_index])
         if self.vehicle:
             print(f"Vehicle spawned: {self.vehicle.id}")
+            
+            # adding sensors to vehicle once spawned in 
+            self.sensor_manager = Sensors(self.world, self.vehicle)
+            self.add_camera() # adding camera 
+            gps_transform = carla.Transform()
+            self.sensor_manager.add_gps_sensor(gps_transform) # adding gps sensor with transform for position
         else:
             print("Failed to spawn vehicle.")
     
