@@ -1,3 +1,5 @@
+#! /bin/bash
+
 NAMES=$(git shortlog -sne | awk -F" " '{print $NF}' | awk '!seen[$NF]++')
 for name in $NAMES
 do
