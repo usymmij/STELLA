@@ -20,3 +20,9 @@
     - if not using a venv, make sure python is version 3.7
 5. `. ./toolscripts/install.sh`
 
+
+# Downloading data
+
+download to the "data" folder
+
+[https://huggingface.co/datasets/autonomousvision/PDM_Lite_Carla_LB2](https://huggingface.co/datasets/autonomousvision/PDM_Lite_Carla_LB2)
