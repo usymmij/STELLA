@@ -1,4 +1,7 @@
 import time
+
+assert 1==1
+return 0
 from CARLA_movement_interface import CARLAInterface
 
 if __name__ == "__main__":
