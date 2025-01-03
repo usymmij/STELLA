@@ -24,7 +24,25 @@
 
 1. `pip install -r stella/requirements.txt`
 2. `pip install ./stella`
-    
+ 
+## Running STELLA
+- if using docker, first run 
+```bash
+docker run --privileged \
+ -p 2000-2002:2000-2002 \
+ --gpus all \
+ -e DISPLAY=$DISPLAY \
+ -v /tmp/.X11-unix:/tmp/.X11-unix \
+ -it \
+ carlasim/carla:0.9.15 \
+ /bin/bash
+```
+- then, inside the container
+
+`./CarlaUE4.sh -quality-level=Low -fps=10`
+
+### future usage
+- to restart the container, use `toolscripts/start.sh`
 
 # Downloading data
 
