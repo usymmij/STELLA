@@ -22,6 +22,7 @@
 
 # Building and Installing STELLA
 
+1. `pip install -r stella/requirements.txt`
 2. `pip install ./stella`
     
 
