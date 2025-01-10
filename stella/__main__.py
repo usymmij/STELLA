@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 import argparse
 
-
 def main():
     parser = argparse.ArgumentParser(
                     prog='STELLA',
@@ -14,8 +13,7 @@ def main():
 
     args = parser.parse_args()
 
-    print(args.port)
-    print(args.ip)
+    print(f"Connecting to CARLA at {args.ip}:{args.port}")
 
 if __name__=="__main__":
     main()
