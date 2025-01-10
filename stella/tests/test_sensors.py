@@ -1,7 +1,7 @@
 import carla
 import time
 
-client = carla.Client('localhost', 2000)
+client = carla.Client('192.168.1.18', 2000)
 try:
     world = client.get_world()
 except RuntimeError:
