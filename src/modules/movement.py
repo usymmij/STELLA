@@ -1,5 +1,7 @@
 import carla
 import time
+import numpy as np
+import pygame
 from sensors import Sensors
 
 class CARLAInterface:
@@ -85,15 +87,40 @@ class CARLAInterface:
         camera_bp = blueprint_library.find('sensor.camera.rgb')
 
         # could set camera attributes necessary here
+        camera_bp.set_attribute("image_size_x", "800")
+        camera_bp.set_attribute("image_size_y", "600")
 
         # attaching camera to vehicle
         spawn_point = attach_point or carla.Transform(carla.Location(x=1.5, z=2.4))
-        camera = self.world.spawn_actor(camera_bp, spawn_point, attach_to=self.vehicle)
+        self.camera = self.world.spawn_actor(camera_bp, spawn_point, attach_to=self.vehicle)
+
+        pygame.init()
+        screen = pygame.display.set_mode((800, 600))
+        pygame.display.set_caption("CARLA Stream")
+
+        def process_image(image):
+            # Convert CARLA image to numpy array
+            img_array = np.frombuffer(image.raw_data, dtype=np.uint8)
+            img_array = img_array.reshape((image.height, image.width, 4))  # BGRA format
+
+            # Convert to RGB format for pygame
+            img_surface = pygame.surfarray.make_surface(img_array[:, :, :3].swapaxes(0, 1))
+            
+            # Display in pygame window
+            screen.blit(img_surface, (0, 0))
+            pygame.display.flip()
+
+
+        self.camera.listen(process_image)
+        print("Camera attached and streaming to pygame window.")
 
         # start listening to camera
-        camera.listen(lambda image: image.save_to_disk(f'{save_path}/%06d.png' % image.frame))
-        print("Camera attached and saving images to: ", save_path)
-        return camera
+        #camera.listen(lambda image: image.save_to_disk(f'{save_path}/%06d.png' % image.frame))
+        #print("Camera attached and saving images to: ", save_path)
+        return self.camera
+
+
+
 
     def destroy_vehicle(self):
         if self.vehicle:
