@@ -1,0 +1,3 @@
+[submodule "transfuser"]
+	path = transfuser
+	url = git@github.com:autonomousvision/transfuser.git
