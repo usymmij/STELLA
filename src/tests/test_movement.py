@@ -29,4 +29,3 @@ if __name__ == "__main__":
     status = interface.get_status()
     print("Vehicle Status:", status)
 
-
