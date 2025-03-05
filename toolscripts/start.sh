@@ -1,4 +1,1 @@
-#! /bin/bash
-
-docker container restart $1
-docker container attach $1
+docker container start carlaserver

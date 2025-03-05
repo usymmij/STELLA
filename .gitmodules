@@ -1,3 +1,6 @@
 [submodule "transfuser"]
 	path = transfuser
 	url = git@github.com:autonomousvision/transfuser.git
+[submodule "carla_garage"]
+	path = carla_garage
+	url = git@github.com:usymmij/carla_garage.git
