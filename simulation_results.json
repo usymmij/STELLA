@@ -3,7 +3,7 @@
         "global_record": {
             "index": -1,
             "route_id": -1,
-            "status": "Failed",
+            "status": "Completed",
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
@@ -11,7 +11,7 @@
                 "red_light": 0.0,
                 "stop_infraction": 0.0,
                 "outside_route_lanes": 0,
-                "min_speed_infractions": 28.09,
+                "min_speed_infractions": 21.305,
                 "yield_emergency_vehicle_infractions": 0.0,
                 "scenario_timeouts": 0.0,
                 "route_dev": 0.0,
@@ -19,31 +19,20 @@
                 "route_timeout": 0.0
             },
             "scores_mean": {
-                "score_composed": 13.81461,
-                "score_route": 14.98,
-                "score_penalty": 0.95437
+                "score_composed": 86.646362,
+                "score_route": 100.0,
+                "score_penalty": 0.866464
             },
             "scores_std_dev": {
-                "score_composed": 13.286,
-                "score_route": 14.934,
-                "score_penalty": 0.065
+                "score_composed": 2.994,
+                "score_route": 0.0,
+                "score_penalty": 0.03
             },
             "meta": {
                 "total_length": 328.557,
-                "duration_game": 14.700000000000001,
-                "duration_system": 50.051,
-                "exceptions": [
-                    [
-                        "RouteScenario_09_rep0",
-                        0,
-                        "Failed"
-                    ],
-                    [
-                        "RouteScenario_07_rep0",
-                        1,
-                        "Failed"
-                    ]
-                ]
+                "duration_game": 93.95,
+                "duration_system": 322.331,
+                "exceptions": []
             }
         },
         "progress": [
@@ -52,11 +41,11 @@
         ],
         "records": [
             {
-                "timestamp": "debug_route0_03_17_18_13_00",
+                "timestamp": "debug_route0_03_19_01_24_41",
                 "index": 0,
                 "route_id": "RouteScenario_09_rep0",
-                "status": "Failed",
-                "num_infractions": 1,
+                "status": "Completed",
+                "num_infractions": 4,
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
@@ -65,7 +54,10 @@
                     "stop_infraction": [],
                     "outside_route_lanes": [],
                     "min_speed_infractions": [
-                        "Average speed is 69.58% of the surrounding traffic's one"
+                        "Average speed is 69.26% of the surrounding traffic's one",
+                        "Average speed is 91.25% of the surrounding traffic's one",
+                        "Average speed is 92.63% of the surrounding traffic's one",
+                        "Average speed is 92.63% of the surrounding traffic's one"
                     ],
                     "yield_emergency_vehicle_infractions": [],
                     "scenario_timeouts": [],
@@ -74,22 +66,22 @@
                     "route_timeout": []
                 },
                 "scores": {
-                    "score_route": 25.54,
-                    "score_penalty": 0.90874,
-                    "score_composed": 23.20922
+                    "score_route": 100,
+                    "score_penalty": 0.845295,
+                    "score_composed": 84.529459
                 },
                 "meta": {
                     "route_length": 99.8,
-                    "duration_game": 12.05,
-                    "duration_system": 42.043
+                    "duration_game": 63.4,
+                    "duration_system": 237.246
                 }
             },
             {
-                "timestamp": "debug_route1_03_17_18_13_54",
+                "timestamp": "debug_route1_03_19_01_28_51",
                 "index": 1,
                 "route_id": "RouteScenario_07_rep0",
-                "status": "Failed",
-                "num_infractions": 0,
+                "status": "Completed",
+                "num_infractions": 3,
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
@@ -97,7 +89,11 @@
                     "red_light": [],
                     "stop_infraction": [],
                     "outside_route_lanes": [],
-                    "min_speed_infractions": [],
+                    "min_speed_infractions": [
+                        "Average speed is 98.57% of the surrounding traffic's one",
+                        "Average speed is 81.39% of the surrounding traffic's one",
+                        "Average speed is 81.39% of the surrounding traffic's one"
+                    ],
                     "yield_emergency_vehicle_infractions": [],
                     "scenario_timeouts": [],
                     "route_dev": [],
@@ -105,14 +101,14 @@
                     "route_timeout": []
                 },
                 "scores": {
-                    "score_route": 4.42,
-                    "score_penalty": 1.0,
-                    "score_composed": 4.42
+                    "score_route": 100,
+                    "score_penalty": 0.887633,
+                    "score_composed": 88.763264
                 },
                 "meta": {
                     "route_length": 228.757,
-                    "duration_game": 2.65,
-                    "duration_system": 8.008
+                    "duration_game": 30.55,
+                    "duration_system": 85.085
                 }
             }
         ]
@@ -127,9 +123,9 @@
         "carla_lidar"
     ],
     "values": [
-        "13.81461",
-        "14.98",
-        "0.95437",
+        "86.646362",
+        "100.0",
+        "0.866464",
         "0.0",
         "0.0",
         "0.0",
@@ -141,7 +137,7 @@
         "0.0",
         "0.0",
         "0.0",
-        "28.09"
+        "21.305"
     ],
     "labels": [
         "Avg. driving score",
